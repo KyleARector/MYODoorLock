@@ -88,15 +88,7 @@ public:
             
             std::string poseString = currentPose.toString();
 
-			if (poseString == "waveOut")
-			{
-				arduino->WriteLine("1");
-			}
-			else if (poseString == "waveIn")
-			{
-				arduino->WriteLine("2");
-			}
-			else if (poseString == "fist")
+			if (poseString == "fist")
 			{
 				arduino->WriteLine("3");
 			}
