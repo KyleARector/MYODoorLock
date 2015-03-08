@@ -112,7 +112,7 @@ int main(int argc, char** argv)
 {
 	String^ portName;
 	int baudRate=9600;
-	portName = "Com4";
+	portName = "Com6"; // Bluetooth Port
 	SerialPort^ arduino;
 	arduino = gcnew SerialPort(portName, baudRate);
 
