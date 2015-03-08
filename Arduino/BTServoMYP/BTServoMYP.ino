@@ -2,6 +2,7 @@
 
 Servo lockServo; 
 int state=0;
+int currState=0;
 
 void setup()
 {
@@ -10,24 +11,24 @@ void setup()
 }
 
 void loop() 
-{ 
+{   
   if (Serial.available() > 0)
   {
     state = Serial.read(); 
     
-    switch(state)
+    if ((state == 1) && (currState == 0))
     {
-      case '3': // On
-        lockServo.write(90);
-      break;     
-      case '0': // Off
-        lockServo.write(0);
-      break;
-      default:
-      break; 
+      lockServo.writeMicroseconds(1500);
+      delay(1000);
+      currState = 1;
     }
-  }                
-  delay(15);                         
+    else if ((state == 0) && (currState == 1))
+    {
+      lockServo.writeMicroseconds(500);
+      delay(1000);
+      currState = 0;
+    }    
+  }                    
 } 
 
 
