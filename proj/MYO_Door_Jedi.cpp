@@ -75,11 +75,13 @@ public:
     void onUnlock(myo::Myo* myo, uint64_t timestamp)
     {
         isUnlocked = true;
+		rotateComplete = false;
     }
 
     void onLock(myo::Myo* myo, uint64_t timestamp)
     {
         isUnlocked = false;
+		rotateComplete = true;
     }
 	
 	void sendToArduino( SerialPort^ arduino )
@@ -88,15 +90,34 @@ public:
             
             std::string poseString = currentPose.toString();
 
-			if (poseString == "waveOut")
+			if (poseString == "fist")
 			{
-				arduino->WriteLine("0");
+				if (firstRun == true)
+				{
+					startRotate = roll_w;
+					firstRun = false;
+				}
+				if (rotateComplete == false)
+				{
+					if (roll_w >= (1.2 * startRotate))
+					{
+						std::cout << "Rotation Done" << std::endl;
+						arduino->WriteLine("1");
+						rotateComplete = true;
+					}
+					else if (roll_w <= (startRotate/1.2))
+					{
+						std::cout << "Rotation Done" << std::endl;
+						arduino->WriteLine("0");
+						rotateComplete = true;
+					}
+				}
 			}
-			else if (poseString == "waveIn")
+			else
 			{
-				arduino->WriteLine("1");
+				firstRun = true;
+				rotateComplete = false;
 			}
-
         } 
     }
 
@@ -106,6 +127,9 @@ public:
     int roll_w, pitch_w, yaw_w;
     myo::Pose currentPose;
 	std::string poseString;
+	bool firstRun;
+	bool rotateComplete;
+	int startRotate;
 };
 
 int main(int argc, char** argv)
