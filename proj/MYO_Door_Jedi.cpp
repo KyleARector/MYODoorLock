@@ -134,6 +134,7 @@ public:
 
 int main(int argc, char** argv)
 {
+	// Revise to use either managed or unmanaged C++, not both
 	String^ portName;
 	int baudRate=9600;
 	portName = "Com6"; // Bluetooth Port
