@@ -68,6 +68,7 @@
     <LinkIncremental>true</LinkIncremental>
     <TargetName>MYO_Door_Jedi</TargetName>
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -84,7 +85,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -105,7 +106,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib;..\</AdditionalIncludeDirectories>
       <CompileAsManaged>true</CompileAsManaged>
     </ClCompile>
     <Link>
@@ -115,8 +116,7 @@
       <AdditionalLibraryDirectories>..\lib</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>COPY "..\bin\myo32.dll" "$(OutDir)"
-      </Command>
+      <Command>COPY "..\bin\myo32.dll" "$(OutDir)"</Command>
       <Message>Copy required dlls to output directory</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
