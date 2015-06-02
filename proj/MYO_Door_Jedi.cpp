@@ -20,7 +20,7 @@ public:
 
     void onUnpair(myo::Myo* myo, uint64_t timestamp)
     {
-		// Clean up
+	// Clean up
         roll_w = 0;
         pitch_w = 0;
         yaw_w = 0;
@@ -134,7 +134,7 @@ public:
 
 int main(int argc, char** argv)
 {
-	// Revise to use either managed or unmanaged C++, not both
+	// Require CLI for Serial Comm?
 	String^ portName;
 	int baudRate=9600;
 	portName = "Com6"; // Bluetooth Port
