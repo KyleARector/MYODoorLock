@@ -145,7 +145,7 @@ int main(int argc, char** argv)
 	{
 		arduino->Open();
 
-		myo::Hub hub("com.example.hello-myo");
+		myo::Hub hub("com.myo.door.lock");
 
 		std::cout << "Attempting to find a device." << std::endl;
 
