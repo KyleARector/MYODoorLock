@@ -180,6 +180,6 @@ int main(int argc, char** argv)
 	}	
 	catch (IO::IOException^ e ) 
 	{ 
-		Console::WriteLine(e->GetType()->Name+": Port is not ready");
+		std::cerr << e->GetType()->Name << ": Port is not ready";
 	}	
 }
